@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Morvexx — Портфолио</title>
+  <title>Morvexx portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
@@ -18,7 +18,7 @@
   </div>
 
   <nav class="navbar">
-    <a href="#" class="logo">Morvexx</a>
+    <a href="#" class="logo">Morvexx portfolio</a>
     <ul class="nav-links">
       <li><a href="#works">Работы</a></li>
       <li><a href="#about">Обо мне</a></li>
@@ -41,9 +41,12 @@
         <a href="#contact" class="btn btn-ghost">Связаться</a>
       </div>
     </div>
-    <div class="scroll-hint">
+    <a href="#works" class="scroll-hint" aria-label="Листать вниз">
       <span></span>
-    </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
   </header>
 
   <section id="works" class="section">
@@ -57,11 +60,16 @@
       <article class="card reveal">
         <div class="card-glow"></div>
         <div class="card-preview preview-1">
-          <span class="preview-icon">🏙️</span>
+          <span class="preview-label">Сайт-презентация</span>
         </div>
         <div class="card-body">
           <h3>Чулим-город</h3>
-          <p>Городской сайт с современным дизайном, анимациями и адаптивной вёрсткой.</p>
+          <p>
+            Сайт-презентация города Чулым: красивая подача информации,
+            современный дизайн, плавные анимации и адаптивная вёрстка
+            под телефон и компьютер. Сделан как полноценный проект
+            для демонстрации города в интернете.
+          </p>
           <div class="tags">
             <span>HTML</span><span>CSS</span><span>JS</span>
           </div>
@@ -75,11 +83,16 @@
       <article class="card reveal">
         <div class="card-glow"></div>
         <div class="card-preview preview-2">
-          <span class="preview-icon">🛍️</span>
+          <span class="preview-label">Образец проекта</span>
         </div>
         <div class="card-body">
           <h3>Telegram Mini App — Shop</h3>
-          <p>Магазин внутри Telegram с плавным интерфейсом и интеграцией с API мессенджера.</p>
+          <p>
+            Магазин внутри Telegram — сделан как образец мини-приложения:
+            демонстрирует каталог товаров, плавный интерфейс и работу
+            с Telegram WebApp API. Показывает, как можно превратить
+            обычного бота в полноценный магазин прямо в мессенджере.
+          </p>
           <div class="tags">
             <span>Telegram</span><span>WebApp</span><span>API</span>
           </div>
@@ -96,9 +109,18 @@
       <div class="about-text">
         <h2>Обо <span class="gradient-text">мне</span></h2>
         <p>
-          Я разрабатываю веб-проекты и Telegram-решения. Люблю чистый код,
-          плавные анимации и современный дизайн. Постоянно учусь и делаю
-          проекты, которые приятно использовать.
+          Мне 13 лет, и я начинающий разработчик. Кодом заинтересовался
+          недавно и с тех пор плотно в нём живу — учусь сам, через ИИ,
+          эксперименты и свои же проекты. Да, я вайбкодер: пишу код
+          вместе с искусственным интеллектом, но всё равно разбираюсь,
+          как что работает, и довожу проекты до конца.
+        </p>
+        <p>
+          Создаю сайты и Telegram-ботов. Боты у меня были разные — например,
+          бот для записи на маникюр и бот-«тикток» со стикерами, где можно
+          было покупать внутреннюю валюту. Каждый проект — это новый опыт
+          и шаг вперёд. Сейчас моя цель — развиваться, учиться кодить
+          глубже и делать проекты всё серьёзнее.
         </p>
         <div class="skills">
           <span>HTML</span><span>CSS</span><span>JavaScript</span>
@@ -113,8 +135,7 @@
       <h2>Давай <span class="gradient-text">свяжемся</span></h2>
       <p>Открыт к проектам, коллаборациям и интересным идеям.</p>
       <div class="contact-buttons">
-        <a href="https://t.me/deviliosin" target="_blank" class="btn btn-primary">Telegram</a>
-        <a href="https://github.com/dargoma411-sys" target="_blank" class="btn btn-ghost">GitHub</a>
+        <a href="https://t.me/deviliosin" target="_blank" class="btn btn-primary">Написать в Telegram</a>
       </div>
     </div>
   </section>
