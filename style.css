@@ -517,3 +517,72 @@ body {
   .btn { width: 100%; max-width: 280px; text-align: center; }
   .contact-card { padding: 40px 24px; }
 }
+/* ===== Падающие лепестки сакуры ===== */
+.sakura-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -60px;
+  color: #ffb7d5;
+  font-size: 1.4rem;
+  opacity: 0.7;
+  text-shadow: 0 0 12px rgba(255, 183, 213, 0.6);
+  animation: fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-60px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(80px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Небольшая вариация для каждого лепестка */
+.petal:nth-child(odd) {
+  animation-duration: 12s;
+}
+.petal:nth-child(even) {
+  animation-duration: 18s;
+}
+
+/* ===== Усиленный reveal при свайпе ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(60px) scale(0.98);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Карточки появляются с задержкой */
+.card.reveal.active:nth-child(1) { transition-delay: 0s; }
+.card.reveal.active:nth-child(2) { transition-delay: 0.15s; }
+
+/* На мобильных лепестки чуть меньше */
+@media (max-width: 768px) {
+  .petal {
+    font-size: 1rem;
+    opacity: 0.5;
+  }
+}
