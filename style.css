@@ -16,20 +16,37 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', 'Manrope', sans-serif;
-  background: var(--bg);
+  background: #0a0a15;
   color: var(--text);
   overflow-x: hidden;
   line-height: 1.6;
 }
 
-/* Анимированный градиентный фон */
+/* ===== Слоёный фон ===== */
+
+/* Лепестки — самый задний план */
+.sakura-container {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Градиентный оверлей — полупрозрачный, чтобы лепестки просвечивали */
 .bg-gradient {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: linear-gradient(135deg, #0a0a15 0%, #12122a 50%, #1a0a2e 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(10, 10, 21, 0.92) 0%,
+    rgba(18, 18, 42, 0.88) 50%,
+    rgba(26, 10, 46, 0.92) 100%
+  );
 }
 
+/* Цветные пятна — выше лепестков, но под контентом */
 .bg-blobs {
   position: fixed;
   inset: 0;
@@ -56,7 +73,32 @@ body {
   66% { transform: translate(-40px, 60px) scale(0.95); }
 }
 
-/* Навигация — прижата к левому краю */
+/* ===== Падающие лепестки сакуры ===== */
+.petal {
+  position: absolute;
+  top: -60px;
+  color: #ffb7d5;
+  font-size: 1.4rem;
+  opacity: 0.7;
+  text-shadow: 0 0 12px rgba(255, 183, 213, 0.6);
+  animation: fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-60px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(105vh) translateX(var(--drift, 80px)) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* ===== Навигация ===== */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -111,7 +153,7 @@ body {
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { width: 100%; }
 
-/* Hero */
+/* ===== Hero ===== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -182,7 +224,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Кнопки */
+/* ===== Кнопки ===== */
 .btn {
   display: inline-block;
   padding: 14px 32px;
@@ -219,7 +261,7 @@ body {
   transform: translateY(-3px);
 }
 
-/* Стрелка вниз — указатель листать */
+/* ===== Стрелка вниз ===== */
 .scroll-hint {
   position: absolute;
   bottom: 40px;
@@ -247,7 +289,7 @@ body {
   50% { transform: translateX(-50%) translateY(10px); }
 }
 
-/* Секции */
+/* ===== Секции ===== */
 .section {
   padding: 120px 6%;
   position: relative;
@@ -271,7 +313,7 @@ body {
   font-size: 1.05rem;
 }
 
-/* Сетка работ */
+/* ===== Сетка работ ===== */
 .works-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 480px));
@@ -310,7 +352,6 @@ body {
 
 .card:hover .card-glow { opacity: 0.5; }
 
-/* Превью карточек — без эмодзи, минималистичные */
 .card-preview {
   height: 160px;
   display: flex;
@@ -392,7 +433,7 @@ body {
   color: #a5b4fc;
 }
 
-/* Обо мне */
+/* ===== Обо мне ===== */
 .about-wrap {
   max-width: 800px;
   margin: 0 auto;
@@ -437,7 +478,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Контакты */
+/* ===== Контакты ===== */
 .contact-card {
   max-width: 700px;
   margin: 0 auto;
@@ -485,7 +526,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Футер */
+/* ===== Футер ===== */
 .footer {
   text-align: center;
   padding: 40px 6%;
@@ -494,75 +535,7 @@ body {
   border-top: 1px solid var(--card-border);
 }
 
-/* Анимация появления при скролле */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-  .navbar { padding: 16px 20px; }
-  .logo { font-size: 1.15rem; }
-  .nav-links { gap: 18px; }
-  .nav-links a { font-size: 0.85rem; }
-  .section { padding: 80px 5%; }
-  .hero-buttons { flex-direction: column; align-items: center; }
-  .btn { width: 100%; max-width: 280px; text-align: center; }
-  .contact-card { padding: 40px 24px; }
-}
-/* ===== Падающие лепестки сакуры ===== */
-.sakura-container {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: -60px;
-  color: #ffb7d5;
-  font-size: 1.4rem;
-  opacity: 0.7;
-  text-shadow: 0 0 12px rgba(255, 183, 213, 0.6);
-  animation: fall linear infinite;
-  will-change: transform;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-60px) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(105vh) translateX(80px) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-/* Небольшая вариация для каждого лепестка */
-.petal:nth-child(odd) {
-  animation-duration: 12s;
-}
-.petal:nth-child(even) {
-  animation-duration: 18s;
-}
-
-/* ===== Усиленный reveal при свайпе ===== */
+/* ===== Анимация появления при скролле ===== */
 .reveal {
   opacity: 0;
   transform: translateY(60px) scale(0.98);
@@ -575,12 +548,19 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* Карточки появляются с задержкой */
 .card.reveal.active:nth-child(1) { transition-delay: 0s; }
 .card.reveal.active:nth-child(2) { transition-delay: 0.15s; }
 
-/* На мобильных лепестки чуть меньше */
+/* ===== Адаптив ===== */
 @media (max-width: 768px) {
+  .navbar { padding: 16px 20px; }
+  .logo { font-size: 1.15rem; }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 0.85rem; }
+  .section { padding: 80px 5%; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn { width: 100%; max-width: 280px; text-align: center; }
+  .contact-card { padding: 40px 24px; }
   .petal {
     font-size: 1rem;
     opacity: 0.5;
