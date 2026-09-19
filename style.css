@@ -111,16 +111,38 @@ body {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: 'Manrope', sans-serif;
   font-weight: 800;
   font-size: 1.4rem;
   color: var(--text);
   text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover { opacity: 0.85; }
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.logo span {
   background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.01em;
 }
 
 .nav-links {
@@ -621,6 +643,7 @@ body {
 @media (max-width: 768px) {
   .navbar { padding: 16px 20px; }
   .logo { font-size: 1.15rem; }
+  .logo-icon { width: 26px; height: 26px; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 0.85rem; }
   .section { padding: 80px 5%; }
