@@ -46,39 +46,71 @@ function createPetal() {
   petal.classList.add('petal');
   petal.textContent = '✿';
 
-  // Случайная позиция по горизонтали
   petal.style.left = Math.random() * 100 + '%';
 
-  // Случайный размер
   const size = 0.8 + Math.random() * 1.2;
   petal.style.fontSize = size + 'rem';
 
-  // Случайная длительность падения
   const duration = 10 + Math.random() * 12;
   petal.style.animationDuration = duration + 's';
 
-  // Случайная задержка старта
   petal.style.animationDelay = Math.random() * 8 + 's';
-
-  // Случайная прозрачность
   petal.style.opacity = 0.4 + Math.random() * 0.5;
 
-  // Случайное смещение по горизонтали при падении
   const drift = (Math.random() - 0.5) * 200;
   petal.style.setProperty('--drift', drift + 'px');
 
   sakuraContainer.appendChild(petal);
 
-  // Удаляем лепесток после завершения анимации
   setTimeout(() => {
     petal.remove();
   }, (duration + 8) * 1000);
 }
 
-// Создаём лепестки постоянно
 setInterval(createPetal, 600);
 
-// Первая партия сразу при загрузке
 for (let i = 0; i < 8; i++) {
   setTimeout(createPetal, i * 400);
 }
+
+// ===== Печатающийся текст в hero =====
+const phrases = [
+  'Создаю современные сайты и Telegram Mini Apps.',
+  'Красиво, быстро, с вниманием к деталям.',
+  'Учусь сам, через ИИ и свои проекты.',
+  'Делаю то, что приятно использовать.'
+];
+
+const typedEl = document.getElementById('typed-text');
+let phraseIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+  const current = phrases[phraseIndex];
+
+  if (isDeleting) {
+    charIndex--;
+    typedEl.textContent = current.substring(0, charIndex);
+
+    if (charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      setTimeout(type, 400);
+      return;
+    }
+    setTimeout(type, 40);
+  } else {
+    charIndex++;
+    typedEl.textContent = current.substring(0, charIndex);
+
+    if (charIndex === current.length) {
+      isDeleting = true;
+      setTimeout(type, 2000);
+      return;
+    }
+    setTimeout(type, 80);
+  }
+}
+
+setTimeout(type, 1000);
