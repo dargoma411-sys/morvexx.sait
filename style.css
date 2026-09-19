@@ -46,23 +46,9 @@ body {
   animation: float 20s ease-in-out infinite;
 }
 
-.blob-1 {
-  width: 500px; height: 500px;
-  background: var(--accent-1);
-  top: -100px; left: -100px;
-}
-.blob-2 {
-  width: 400px; height: 400px;
-  background: var(--accent-2);
-  bottom: -100px; right: -100px;
-  animation-delay: -5s;
-}
-.blob-3 {
-  width: 350px; height: 350px;
-  background: var(--accent-3);
-  top: 40%; left: 50%;
-  animation-delay: -10s;
-}
+.blob-1 { width: 500px; height: 500px; background: var(--accent-1); top: -100px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: var(--accent-2); bottom: -100px; right: -100px; animation-delay: -5s; }
+.blob-3 { width: 350px; height: 350px; background: var(--accent-3); top: 40%; left: 50%; animation-delay: -10s; }
 
 @keyframes float {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -70,14 +56,14 @@ body {
   66% { transform: translate(-40px, 60px) scale(0.95); }
 }
 
-/* Навигация */
+/* Навигация — прижата к левому краю */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 6%;
+  padding: 20px 32px;
   z-index: 100;
   backdrop-filter: blur(16px);
   background: rgba(10, 10, 21, 0.6);
@@ -95,6 +81,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: -0.01em;
 }
 
 .nav-links {
@@ -232,31 +219,32 @@ body {
   transform: translateY(-3px);
 }
 
-/* Scroll hint */
+/* Стрелка вниз — указатель листать */
 .scroll-hint {
   position: absolute;
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  animation: bounceDown 2s ease-in-out infinite;
 }
 
-.scroll-hint span {
-  position: absolute;
-  top: 8px; left: 50%;
-  transform: translateX(-50%);
-  width: 4px; height: 8px;
-  background: var(--accent-3);
-  border-radius: 2px;
-  animation: scrollDot 2s ease infinite;
+.scroll-hint:hover { color: var(--accent-3); }
+
+.scroll-hint svg {
+  width: 28px;
+  height: 28px;
 }
 
-@keyframes scrollDot {
-  0% { opacity: 1; top: 8px; }
-  100% { opacity: 0; top: 24px; }
+@keyframes bounceDown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
 }
 
 /* Секции */
@@ -286,7 +274,8 @@ body {
 /* Сетка работ */
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 480px));
+  justify-content: center;
   gap: 28px;
   max-width: 1200px;
   margin: 0 auto;
@@ -321,8 +310,9 @@ body {
 
 .card:hover .card-glow { opacity: 0.5; }
 
+/* Превью карточек — без эмодзи, минималистичные */
 .card-preview {
-  height: 200px;
+  height: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -332,7 +322,6 @@ body {
 
 .preview-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
 .preview-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
-.preview-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
 
 .card-preview::before {
   content: '';
@@ -341,15 +330,20 @@ body {
   background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.25), transparent 60%);
 }
 
-.preview-icon {
-  font-size: 4rem;
+.preview-label {
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 4px 12px rgba(0,0,0,0.25);
   transition: transform 0.4s ease;
 }
 
-.card:hover .preview-icon { transform: scale(1.15) rotate(-5deg); }
+.card:hover .preview-label { transform: scale(1.08); }
 
 .card-body { padding: 28px; }
 
@@ -357,7 +351,7 @@ body {
   font-family: 'Manrope', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .card-body p {
@@ -409,13 +403,14 @@ body {
   font-family: 'Manrope', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .about-text p {
   color: var(--muted);
   font-size: 1.05rem;
-  margin-bottom: 32px;
+  margin-bottom: 20px;
+  line-height: 1.75;
 }
 
 .skills {
@@ -423,6 +418,7 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  margin-top: 32px;
 }
 
 .skills span {
@@ -512,6 +508,8 @@ body {
 
 /* Адаптив */
 @media (max-width: 768px) {
+  .navbar { padding: 16px 20px; }
+  .logo { font-size: 1.15rem; }
   .nav-links { gap: 18px; }
   .nav-links a { font-size: 0.85rem; }
   .section { padding: 80px 5%; }
