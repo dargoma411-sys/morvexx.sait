@@ -353,21 +353,11 @@ body {
 /* ===== Сетка работ ===== */
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;
   gap: 28px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-}
-
-@media (max-width: 720px) {
-  .works-grid {
-    grid-template-columns: 1fr;
-  }
-  .card-soon {
-  max-width: 480px;
-  width: 100%;
-  justify-self: center;
 }
 
 .card {
@@ -515,6 +505,10 @@ body {
 .card-soon {
   opacity: 0.85;
   border-style: dashed;
+  grid-column: 1 / -1;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .card-soon:hover {
@@ -652,6 +646,7 @@ body {
 .card.reveal.active:nth-child(2) { transition-delay: 0.15s; }
 .card.reveal.active:nth-child(3) { transition-delay: 0.3s; }
 .card.reveal.active:nth-child(4) { transition-delay: 0.45s; }
+
 /* ===== Адаптив ===== */
 @media (max-width: 768px) {
   .navbar { padding: 16px 20px; }
@@ -667,11 +662,4 @@ body {
     font-size: 1rem;
     opacity: 0.5;
   }
-}
-
-/* Заглушка — по центру под 1 и 2 проектом */
-.card-soon {
-  grid-column: 2 / 3;
-  max-width: 480px;
-  width: 100%;
 }
