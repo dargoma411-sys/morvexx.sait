@@ -401,6 +401,7 @@ body {
 .preview-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
 .preview-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
 .preview-3 { background: linear-gradient(135deg, #22c55e 0%, #4f46e5 55%, #a855f7 100%);}
+.preview-4 { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%); }
 
 .card-preview::before {
   content: '';
@@ -640,7 +641,7 @@ body {
 .card.reveal.active:nth-child(1) { transition-delay: 0s; }
 .card.reveal.active:nth-child(2) { transition-delay: 0.15s; }
 .card.reveal.active:nth-child(3) { transition-delay: 0.3s; }
-
+.card.reveal.active:nth-child(4) { transition-delay: 0.45s; }
 /* ===== Адаптив ===== */
 @media (max-width: 768px) {
   .navbar { padding: 16px 20px; }
@@ -656,4 +657,12 @@ body {
     font-size: 1rem;
     opacity: 0.5;
   }
+}
+
+/* Заглушка — всегда на отдельной строке по центру */
+.card-soon {
+  grid-column: 1 / -1;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
 }
