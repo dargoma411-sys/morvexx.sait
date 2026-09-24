@@ -366,12 +366,12 @@ body {
   grid-column: span 2;
 }
 
-/* Case Go — 4-й, по центру (колонки 2-3), шириной 2 */
+/* Low Price — 4-й, по центру (колонки 2-3) */
 .works-grid > .card:nth-child(4) {
   grid-column: 2 / span 2;
 }
 
-/* Заглушка — 5-й, справа от Case Go (колонки 4-5), шириной 2 */
+/* SearchMyWork — 5-й, справа от Low Price (колонки 4-5) */
 .works-grid > .card:nth-child(5) {
   grid-column: 4 / span 2;
 }
@@ -418,7 +418,8 @@ body {
 .preview-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
 .preview-3 { background: linear-gradient(135deg, #22c55e 0%, #4f46e5 55%, #a855f7 100%);}
 .preview-4 { background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 50%, #2563eb 100%); }
-.preview-5 { background: linear-gradient(135deg, #0c4a6e 0%, #0f172a 45%, #7c3aed 100%); }
+.preview-6 { background: linear-gradient(135deg, #1f1f1f 0%, #b35c00 50%, #d4a017 100%); }
+.preview-7 { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%); }
 
 .card-preview::before {
   content: '';
@@ -487,57 +488,6 @@ body {
 .card-link:hover {
   gap: 12px;
   color: #a5b4fc;
-}
-
-/* ===== Карточка «Скоро» ===== */
-.preview-soon {
-  background: linear-gradient(135deg, #2a2a45, #1a1a30);
-  position: relative;
-}
-
-.preview-soon .preview-label {
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.15em;
-}
-
-.preview-soon::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 183, 213, 0.15) 50%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 3s ease-in-out infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.card-soon {
-  opacity: 0.85;
-  border-style: dashed;
-}
-
-.card-soon:hover {
-  opacity: 1;
-  transform: translateY(-8px);
-}
-
-.card-link-muted {
-  color: var(--muted);
-  cursor: default;
-  font-style: italic;
-}
-
-.card-link-muted:hover {
-  color: var(--muted);
-  gap: 6px;
 }
 
 /* ===== Обо мне ===== */
